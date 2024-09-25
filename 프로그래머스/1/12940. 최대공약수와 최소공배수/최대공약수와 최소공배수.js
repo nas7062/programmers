@@ -8,15 +8,14 @@ function GCD(num1,num2)
         }
     return gcd;
 }
-function LCD(num1,num2)
-{
-    let lcd = Math.max(num1,num2);
-    for(let i =lcd;i<=1000001;i++)
-        {
-            if(i%num1===0 && i%num2 ===0)
-                return i;
+function LCD(num1, num2) {
+    let lcd = Math.max(num1, num2);
+    while (true) {
+        if (lcd % num1 === 0 && lcd % num2 === 0) {
+            return lcd;
         }
-    return lcd;
+        lcd++;
+    }
 }
 function solution(n, m) {
     var answer = [];
