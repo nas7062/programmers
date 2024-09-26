@@ -4,7 +4,7 @@ function solution(number, limit, power) {
     for(let i =1;i<=number;i++)
         {
             let cnt =0;
-            for(let j =1;j*j<=i;j++)
+            for(let j =1;j<=Math.sqrt(i);j++)
                 {
                     if(i%j===0)
                         {
