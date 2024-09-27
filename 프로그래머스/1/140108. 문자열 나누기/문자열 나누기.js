@@ -11,7 +11,9 @@ function solution(s) {
             if(cnt[0]===cnt[1])
             {
                 answer.push(s.slice(i-cnt[0]-cnt[1]+1,i+1));
-                x=s[i+1];
+                if (i + 1 < s.length)  
+                x = s[i + 1]; 
+            
                 cnt[0]=0;
                 cnt[1]=0;
                 
