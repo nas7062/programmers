@@ -1,9 +1,5 @@
 function solution(dots) {
-    var answer = 0;
-    let minX = 256;
-    let maxX = -256;
-    let minY = 256;
-    let maxY = -256;
+    let minX = 256 ,maxX =-256, minY =256,maxY =-256; // 최대 최소 설정
     dots.forEach((item)=> {
         if(minX > item[0])
             minX =item[0];
@@ -14,5 +10,5 @@ function solution(dots) {
         if(maxY < item[1])
             maxY = item[1];
     })
-    return (maxX-minX) *(maxY-minY);
+    return (maxX-minX) *(maxY-minY); // 정사각형 넓이 공식 
 }
