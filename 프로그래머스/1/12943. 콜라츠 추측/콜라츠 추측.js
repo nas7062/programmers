@@ -1,13 +1,12 @@
 function solution(num) {
     var answer = 0;
-    var n = num;
-    while(n!==1)
-        {
-            if(n%2===0)
-                n=n/2;
-            else
-                n=n*3+1;
-            answer++;
+    while(num!==1 ) {
+        if(num%2 === 0) num/=2;
+        else  num =num*3 +1;
+        answer++;
+        if(answer >=500) {
+            return -1
         }
-    return answer >500 ? -1 : answer;
+    }
+    return answer;
 }
