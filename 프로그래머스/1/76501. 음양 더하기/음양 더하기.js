@@ -1,5 +1,7 @@
 function solution(absolutes, signs) {
-    var answer = 0;
-     absolutes.map((item,idx)=>signs[idx]===true ? answer+=item :answer-=item);
+    let answer =0;
+    signs.forEach((item,idx)=>item === true 
+    ? answer+=absolutes[idx] : answer-=absolutes[idx]);
+    // signs 배열을 돌며 true인것은 더하고 false이면 빼라
     return answer;
 }
