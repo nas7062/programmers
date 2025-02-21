@@ -1,6 +1,10 @@
 function solution(sizes) {
-    var answer = 0;
-   let maxi = sizes.map((item)=>Math.max(...item));
-    let mini =sizes.map((item)=>Math.min(...item));
-    return Math.max(...maxi) * Math.max(...mini);
+    sizes =sizes.map((item)=>item.sort((a,b)=>a-b));
+    let w =0;
+    let h= 0;
+    sizes.forEach((item)=> {
+        w = Math.max(item[0],w);
+        h = Math.max(item[1],h);
+    })
+    return w*h;
 }
