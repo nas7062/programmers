@@ -1,9 +1,9 @@
 function solution(array, commands) {
     var answer = [];
-     commands.map((item)=>{
-              let p=  array.slice(item[0]-1,item[1]).sort((a,b)=>a-b);
-                        answer.push(p[item[2]-1]);
-                
-    });
+    commands.forEach((c)=> {
+        let arr =array.slice(c[0]-1,c[1]);// c[0]부터 c[1]까지 자르고
+        arr =arr.sort((a,b)=>a-b); // 오름차순 정렬
+        answer.push(arr[c[2]-1]); // c[2] 번째 숫자 push 
+    })
     return answer;
 }
