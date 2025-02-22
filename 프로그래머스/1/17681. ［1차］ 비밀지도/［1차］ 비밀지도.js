@@ -1,19 +1,18 @@
 function solution(n, arr1, arr2) {
-  var answer= [];
-  var sumarr =[];
-   const A = arr1.map((item)=>item.toString(2).padStart(n,0));
-    const B = arr2.map((item)=>item.toString(2).padStart(n,0));
-    for(let i =0;i<n;i++)
-        {
-            sumarr.push(String(+A[i] + +B[i]).padStart(n,0));
+    var answer = [];
+    let arr =[]
+    for(let i =0;i<arr1.length;i++) {
+        let result ='';
+        let a1 = arr1[i].toString(2);
+        let a2 = arr2[i].toString(2);
+        let sum = (Number(a1)+Number(a2)).toString();
+        if(sum.length < n) {
+            for(let j =0;j<n-sum.length;j++)
+                result+='0';
         }
-    
-   for(let num of sumarr)
-       {
-           let p =num.split("").map((item)=>item >=1 ? item="#" : item=" ").join("")
-           answer.push(p);
-       }
-    
-    
-    return answer;
+        result+=sum;
+        console.log(result);
+        arr.push(result);
+    }
+    return arr.map((item)=>item.split('').map((item)=>item > 0 ? '#' : ' ').join(''));
 }
