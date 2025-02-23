@@ -1,6 +1,8 @@
 function solution(nums) {
-    var answer = 0;
-    var n = Math.floor(nums.length/2);
-    var arr= nums.filter((item,idx)=>nums.indexOf(item) ===idx);
-    return arr.filter((item,idx)=>idx <n).length;
+    let n =Math.floor(nums.length/2);
+    let set = [...new Set(nums)];
+    if(set.length >=n)
+        return n;
+    else
+        return set.length;
 }
