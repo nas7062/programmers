@@ -1,17 +1,23 @@
+function isPrime(n) {
+    if(n <2) return false;
+    for(let i =2;i<=Math.sqrt(n);i++) {
+        if(n%i===0)
+            return false;
+    }
+    return true;
+}
+
 function solution(nums) {
     var answer = 0;
-    var number =0;
- for(var i=0;i<nums.length-2;i++){
-        for(var j=i+1;j<nums.length-1;j++){
-            for(var l=j+1;l<nums.length;l++){
-                number=nums[i]+nums[j]+nums[l];
-                var cnt=0;
-                for(var k=1;k<=number;k++){
-                    if(number%k==0) cnt++;
-                }
-                if(cnt==2) answer++;
+    for(let i =0;i<nums.length-2;i++) {
+        for(let j=i+1;j<nums.length-1;j++) {
+            for(let k =j+1;k<nums.length;k++) {
+                let sum =nums[i]+nums[j]+nums[k];
+                if(isPrime(sum))
+                    answer++;
             }
         }
     }
+    
     return answer;
 }
