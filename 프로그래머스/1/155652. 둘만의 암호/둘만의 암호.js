@@ -1,30 +1,25 @@
 function solution(s, skip, index) {
     var answer = '';
-    var skipnum =[];
-    for(let i =0;i<skip.length;i++)
-        {
-            let temp = skip.charCodeAt(i);
-            skipnum.push(temp);
+    let skipNum =[];
+     for(let j=0;j<skip.length;j++) {
+        let num =skip.charCodeAt(j);
+            skipNum.push(num);
         }
-    console.log(skipnum)
-    for(let i =0;i<s.length;i++)
-        {
-            let temp = s.charCodeAt(i);
-            for(let j=0;j<index;j++)
-                {
-                    temp++;
-                        if(temp>122)
-                            temp=97;
-                    while (skipnum.includes(temp)) 
-                     {
-                        temp++; 
-                        if (temp > 122) {
-                          temp = 97;
-                        }
-                    }
-                }
-            
-            answer+=String.fromCharCode(temp);
+    for(let i =0;i<s.length;i++) {
+     let num= s.charCodeAt(i);
+     let idx =index;
+        while(idx--) {
+            num++;
+            if(num >122) 
+                num=97;
+            while(skipNum.includes(num)) {
+                num++; 
+                if (num > 122) 
+                    num = 97;   
+            }  
         }
- return answer;   
+        answer+=String.fromCharCode(num);
+    }
+   
+    return answer;
 }
