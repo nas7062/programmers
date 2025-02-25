@@ -7,7 +7,8 @@ function solution(n, lost, reserve) {
     for(let i =0;i<reserve.length;i++) {
         arr[reserve[i]-1]++;
     }
-    for(let i =0;i<=n;i++) {
+    
+    for(let i =0;i<n;i++) {
         if(arr[i]===0) {
             if(arr[i+1] ===2) {
                 arr[i+1]=1;
