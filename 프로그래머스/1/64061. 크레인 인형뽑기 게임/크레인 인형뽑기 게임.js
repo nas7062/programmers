@@ -1,26 +1,24 @@
 function solution(board, moves) {
-  var answer= 0;
-  var list = board.map((item)=>item.slice());
-  var stack =[];
-    
-    for(let i =0;i<moves.length;i++)
-        {
-            let n = moves[i]-1;
-            for(let j =0;j<list.length;j++)
-                {
-                    if(list[j][n]!==0)
-                        {
-                            if(stack[stack.length-1]===list[j][n])
-                            {
-                                answer+=2;
-                                stack.pop();
-                            }
-                            else
-                                stack.push(list[j][n]);
-                            list[j][n]=0;
-                            break;
+    var answer = 0;
+    let map = board.map((item)=>item.slice());
+    let stack =[];
+    moves.forEach((item)=> {
+        for(let i =0;i<map.length;i++) {
+                if(map[i][item-1]===0)
+                    continue;
+                else {
+                     if(stack[stack.length-1] === map[i][item-1]) {
+                         stack.pop();
+                         answer+=2;
                         }
+                        else 
+                            stack.push(map[i][item-1]);
+                        map[i][item-1] =0;
+                        break;  
+                    
                 }
-        }
-  return answer;
+        
+    }
+})
+    return answer;
 }
