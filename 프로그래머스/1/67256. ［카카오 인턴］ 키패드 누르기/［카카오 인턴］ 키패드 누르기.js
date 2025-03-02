@@ -1,56 +1,49 @@
 function solution(numbers, hand) {
     var answer = '';
-    let left= [1,4,7];
-    let right=[3,6,9];
-    let mid =[2,5,8,0];
-    let lpos = 10;
-    let rpos = 12;
-   
-            for(let i =0;i<numbers.length;i++)
-                {
-                    if(left.includes(numbers[i]))
-                    {
-                        answer+='L';
-                        lpos = numbers[i];
-                    }
-                    if(right.includes(numbers[i]))
-                    {
-                        answer+='R';
-                        rpos = numbers[i];
-                    }
-                    if(mid.includes(numbers[i]))
-                    {
-                        if(numbers[i]===0)
-                            numbers[i]=11;
-                        let L = Math.abs(numbers[i]-lpos);
-                        let R = Math.abs(numbers[i]-rpos);
-                        L = Math.floor(L/3)+Math.floor(L%3);
-                         R = Math.floor(R/3)+Math.floor(R%3);
-                        if(L===R)
-                        {
-                           if(hand==="right")
-                              {
-                                  answer+="R";
-                                  rpos = numbers[i];
-                              }
-                            else
-                                {
-                                    answer+="L";
-                                    lpos= numbers[i];
-                                }
-                        }
-                        else if(L <R)
-                            {
-                                answer+="L"
-                                lpos=numbers[i];
-                            }
-                        else
-                        {
-                            answer+="R";
-                            rpos=numbers[i];
-                        }
-                    }
-                
+    let left =[1,4,7];
+    let center =[2,5,8,0];
+    let right =[3,6,9];
+    let l = 10;
+    let r = 12;
+    for(let num of numbers){
+        if(left.includes(num)) {
+            answer+="L";
+            l =num;
         }
+        else if(right.includes(num)) {
+            answer+="R";
+            r=num;
+        }
+        else if(center.includes(num)) {
+            if(num===0)
+               num=11;
+            let lnum = Math.abs(num-l); 
+            let rnum =Math.abs(num-r);
+            lnum=Math.floor(lnum/3)+Math.floor(lnum%3);
+            rnum = Math.floor(rnum/3)+Math.floor(rnum%3);
+            
+            if(lnum <rnum) {
+                answer+="L";
+                l=num;
+            }
+                
+            else if(lnum >rnum) {
+                answer+="R";
+                r=num;
+            }
+                
+            else{
+                if(hand==="left") {
+                    answer+="L";
+                    l=num;
+                }
+                    
+                else {
+                    answer+="R";
+                    r=num;
+               }
+            }
+        }
+}
     return answer;
 }
