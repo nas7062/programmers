@@ -1,45 +1,42 @@
 function solution(new_id) {
     var answer = '';
-    new_id =new_id.toLowerCase();
+    //if(new_id.length < 3 || new_id.length > 15)
+        
+    let arr;
+     arr = [...new_id].map((item)=>{
+        if(item >='A' && item <='Z')
+            return item.toLowerCase();
+         else
+             return item;
+    });
+    arr = arr.map((item)=> {
+        if(item>='a' && item <='z')
+            return item;
+        else if(item>='0' && item <='9')
+            return item;
+        else if(item ==="-" || item ==="_" || item===".")
+            return item;
+    }).join('');
     
-   new_id = new_id.split("");
-    let posible ='abcdefghijklmnopqrstuvwxyz0123456789-_.'.split(""); 
-    for(let i=0;i<new_id.length;i++)
-        {
-            for(let j =0;j<posible.length;j++)
-                {
-                    if(new_id[i].includes(posible[j]))
-                        answer+=new_id[i];
-                }
-        }
-    answer = answer.split('');
-    let newAnswer = [];
-    for(let i =0;i<answer.length;i++)
-        {
-            if(answer[i]==='.'&&answer[i+1]==='.')
-                continue;
-            else
-                newAnswer.push(answer[i]);
-        }
-    
-    answer= newAnswer;
-    if(answer[0]===".")
-        answer.shift();
-    if(answer[answer.length-1]===".")
-        answer.pop();
-    
-    if(answer.length===0)
-        answer.push("a");
-    
-    if(answer.length >=16)
-        {
-            answer =answer.slice(0,15);
-            if(answer[answer.length-1]===".")
-                answer.pop();
-        }
-    while(answer.length<3)
-        {
-            answer.push(answer[answer.length-1]);
-        }
-    return answer.join("");
+    let machim =[];
+    for(let ar of arr) {
+        if(machim[machim.length-1]==="." && machim[machim.length-1]===ar)
+            machim.pop();
+        machim.push(ar);
+        
+    }
+    if(machim[0]===".")
+        machim.shift();
+    if(machim[machim.length-1]===".")
+        machim.pop();
+    if(machim.length ===0)
+        machim.push("a");
+    if(machim.length>=16)
+        machim = machim.slice(0,15);
+    if(machim[machim.length-1]===".")
+        machim.pop();
+    if(machim.length <=2)
+        while(machim.length <3)
+            machim.push(machim[machim.length-1]);
+    return machim.join('');
 }
