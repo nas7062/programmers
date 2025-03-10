@@ -1,27 +1,23 @@
 function solution(want, number, discount) {
     var answer = 0;
-    let numbers = [];
-    let count =0;
-    for(let i =0;i<=discount.length-10;i++)
-    {
+    for(let i=0;i<=discount.length-10;i++) {
+        let map = new Map();
+     want.forEach((item)=> {
+        map.set(item,0);
+    });
         
-        numbers =[...number];
-        let stuff = discount.slice(i,i+10);
-        for(let el of stuff)
-            {
-                let p = want.indexOf(el);
-                if(p === -1)
-                    continue;
-                if(numbers[p] > 0)
-                {
-                    numbers[p]--;
-                    count++;
-                }
-            }
-        if(count===10)
+        let sliceArr= discount.slice(i,i+10);
+        for(let arr of sliceArr) {
+            if(map.has(arr))
+                map.set(arr,map.get(arr)+1);
+        }
+        let result =[];
+        for(let v of map.values())
+            result.push(v);
+        let all =result.every((item,idx)=>item===number[idx]);
+        if(all)
             answer++;
-        count =0;
     }
     
-   return answer;
+    return answer;
 }
