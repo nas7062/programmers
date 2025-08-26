@@ -1,4 +1,4 @@
 function solution(s) {
-    if(s.length %2) return s[Math.floor(s.length/2)];
-    else return s[s.length/2 -1]+s[s.length/2];
+    var answer = '';
+    return s.length % 2 ? s[Math.floor(s.length/2)] : s[s.length/2 -1]+s[s.length/2] ;
 }
