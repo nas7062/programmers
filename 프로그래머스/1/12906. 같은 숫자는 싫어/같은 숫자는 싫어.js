@@ -1,5 +1,6 @@
 function solution(arr)
 {
-    
-    return arr.filter((item,idx)=> item !== arr[idx+1]);
+    var answer = [];
+    arr =arr.filter((item,idx)=>item !==arr[idx+1]);
+    return arr;
 }
