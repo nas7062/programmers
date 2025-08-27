@@ -1,10 +1,12 @@
 function solution(sizes) {
-    sizes =sizes.map((item)=>item.sort((a,b)=>a-b));
-    let w =0;
-    let h= 0;
-    sizes.forEach((item)=> {
-        w = Math.max(item[0],w);
-        h = Math.max(item[1],h);
-    })
-    return w*h;
+    var answer = 0;
+    let max1= 0;
+    let max2= 0;
+    sizes.forEach((size)=>  {
+        size = size.sort((a,b)=>a-b);
+        console.log(size)
+        max1 = Math.max(max1,size[0]);
+        max2= Math.max(max2,size[1]);
+    });
+    return max1 * max2;
 }
