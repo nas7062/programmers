@@ -1,6 +1,10 @@
 function solution(s) {
-    if(s.length!==4 && s.length !==6)
-        return false;
-    let len =[...s].filter((item,idx)=>!(Number.isNaN(Number(item)))).length;
-    return len !==s.length  ? false : true;
+  var answer;
+  if (s.length === 4 || s.length === 6) {
+    for (let i = 0; i < s.length; i++) {
+      if (isNaN(s[i])) return false;
+    }
+    return true;
+  }
+  return false;
 }
