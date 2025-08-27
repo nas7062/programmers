@@ -1,24 +1,21 @@
 function solution(s, n) {
     var answer = '';
-    for(let i=0;i<s.length;i++) {
-        if(s[i]===" "){
-              answer+=" ";
-            continue;
-        }
-          
-        let char =s.charCodeAt(i);
-        console.log(char);
-        if( char <=90) {
-            if(char+n >90){
-                char-=26;
-            }
-        }
-        if(char <=122){
-            if(char+n >122)
-                char-=26;
-        }
-        char+=n;
-        answer+=String.fromCharCode(char);
-    };
+    for(let i =0;i<s.length;i++) {
+           if(s[i]=== " ") {
+               answer+=' '
+               continue;
+           }
+    let code =s[i].charCodeAt();
+    // 대문자 처리
+    if (code >= 65 && code <= 90) {
+      code = ((code - 65 + n) % 26) + 65;
+    }
+    // 소문자 처리
+    else if (code >= 97 && code <= 122) {
+      code = ((code - 97 + n) % 26) + 97;
+    }
+        
+    answer+=String.fromCharCode(code);
+    }
     return answer;
 }
