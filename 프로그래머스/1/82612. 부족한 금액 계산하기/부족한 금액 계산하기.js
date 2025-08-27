@@ -1,9 +1,10 @@
 function solution(price, money, count) {
-    let sum =0;
-    let newPrice=0;
+    var answer = -1;
+    let total =0;
     for(let i =1;i<=count;i++) {
-        newPrice+=price;
-        sum+= newPrice;
+        total+=price*i;
     }
-    return money>sum ? 0 : sum-money;
+    if(money - total > 0) 
+        return 0;
+    return total-money
 }
