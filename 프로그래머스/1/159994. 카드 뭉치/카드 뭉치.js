@@ -1,19 +1,16 @@
-function checkCards (cards, goal) {
-    const cardsFilteredByGoal = goal.filter((item, index) => cards.includes(item));
-    // cards에 있는 것들만 뽑아냄 
-    const cardFilteredByIndex = cardsFilteredByGoal.filter((item, index) => item === cards[index]);
-    // cards의 순서와 cardFilteredByIndex가 같은지 확인
-    if(cardFilteredByIndex.length !== cardsFilteredByGoal.length){
-        return false;
-    } // 길이가 다르면 false 같으면 true
-    
-    return true;
-}
+function solution(cards1, cards2, goal) {
+  let i = 0; // cards1 포인터
+  let j = 0; // cards2 포인터
 
-function solution(cards1, cards2, goal) {    
-    if(checkCards(cards1, goal) && checkCards(cards2, goal)){
-        return "Yes";
+  //goal을 돌면서 먼저 cads1 부터 찾은 후 없다면 cards2에서 찾고 있다면 그 다음 꺼로 가게끔 
+  for (const word of goal) {
+    if (i < cards1.length && cards1[i] === word) {
+      i++;            
+    } else if (j < cards2.length && cards2[j] === word) {
+      j++;      
+    } else {
+      return "No";
     }
-    
-    return "No";
+  }
+  return "Yes";
 }
