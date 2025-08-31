@@ -1,32 +1,37 @@
 function solution(dartResult) {
-    let result=[];
-    let num =0;
-    for(let i=0;i<dartResult.length;i++) {
-        let s =dartResult[i];
-        if(s>='0' && s <="9"){
-            if(s==="1" && dartResult[i+1]==="0") {
-                num=10;
-                i++;
-            }
-            else num=Number(s);
+    var answer = 0;
+    let num = [];
+    for(let i =0;i<dartResult.length;i++) {
+        let d =dartResult[i];
+        if(dartResult[i]==='1' && dartResult[i+1] ==='0') {
+               num.push(10);
+            i++;
+            continue;
+}
+         
+         if (d >= '0' && d <= '9') {
+      num.push(parseInt(d, 10));
+      continue;
+    }
+
+        if(d ==='S') {
+           num[num.length-1] = num[num.length-1] *1;
         }
-        else if(s==="S") {
-                result.push(num);
+        if(d ==='D') {
+            num[num.length-1]= Math.pow(num[num.length-1],2);
         }
-        else if(s==="D") {
-            result.push(Math.pow(num,2));
+        if(d==='T')
+            {
+            num[num.length-1]= Math.pow(num[num.length-1],3);
         }
-        else if(s==="T") {
-           result.push(Math.pow(num,3));
+        if(d==='*') {
+             num[num.length-1]= num[num.length-1] *2;
+            num[num.length-2]= num[num.length-2] *2;
         }
-        else if(s==="*") {
-                result[result.length-1] *= 2;
-                result[result.length-2] *= 2;
-        }
-        else if(s==="#") {
-            result[result.length-1] *= -1; 
+        if(d ==='#') {
+            num[num.length-1]= -num[num.length-1];
         }
     }
- 
-    return result.reduce((a,b)=>a+b,0);
+    console.log(num);
+    return num.reduce((a,b)=>a + +b);
 }
