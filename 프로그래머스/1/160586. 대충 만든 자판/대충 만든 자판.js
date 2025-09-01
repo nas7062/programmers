@@ -1,31 +1,34 @@
-function solution(keymap, targets) {
-    var answer = [];
-    targets.forEach((target,idx)=> {
-        let result =0;
-        for(let t of target) {
-            let arr =[];
-            let cnt= 0;
-            keymap.forEach((item)=> {
-                let p =item.indexOf(t);
-                if(p !==-1) {
-                    arr.push(p+1);   
-                }
-                else
-                    cnt++;
-            })
-            if (cnt === keymap.length) { // 모든 keymap에서 찾을 수 없는 경우
-                result = -1;
-                break;
-            }
+function Search(ch, keymap) {
+  let best = Infinity;
 
-            if(arr.length>0) {
-                let mini = Math.min(...arr);
-                result+=mini;
-            }
-        }
-        answer.push(result);
-    })
-    if(answer.length ===0)
-            return [-1];
-    return answer;
+  for (const key of keymap) {
+    const pos = key.indexOf(ch);
+    if (pos !== -1) {
+      best = Math.min(best, pos + 1); // 키 위치는 1부터
+    }
+  }
+
+  return best === Infinity ? -1 : best; // 없으면 -1
+}
+
+function solution(keymap, targets) {
+  const answer = [];
+
+  for (const target of targets) {
+    let sum = 0;
+    let possible = true;
+
+    for (const ch of target) {
+      const p = Search(ch, keymap);
+      if (p === -1) {          // 한 글자라도 없으면 불가능
+        possible = false;
+        break;
+      }
+      sum += p;
+    }
+
+    answer.push(possible ? sum : -1);
+  }
+
+  return answer;
 }
