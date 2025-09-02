@@ -1,12 +1,17 @@
-function solution(ingredient) { // 1231 찾으면 
+function solution(ingredient) {
     var answer = 0;
-    let stack =[];
-    for(let i =0;i<ingredient.length;i++) {
-         stack.push(ingredient[i]);
-        if(stack.slice(-4).join('') ==="1231") {
+    let arr ="1231";
+    let result= [];
+    for(let ing of ingredient) {
+        result.push(ing)
+        if(result.length >=4 ) {
+            if(result.slice(-4).join('') ===arr) {
+            result.splice(-4,4);
             answer++;
-            stack.splice(-4);
         }
+        }
+        
     }
+   
     return answer;
 }
