@@ -1,42 +1,51 @@
 function solution(new_id) {
     var answer = '';
-    //if(new_id.length < 3 || new_id.length > 15)
-        
-    let arr;
-     arr = [...new_id].map((item)=>{
-        if(item >='A' && item <='Z')
-            return item.toLowerCase();
-         else
-             return item;
-    });
-    arr = arr.map((item)=> {
-        if(item>='a' && item <='z')
-            return item;
-        else if(item>='0' && item <='9')
-            return item;
-        else if(item ==="-" || item ==="_" || item===".")
-            return item;
-    }).join('');
-    
-    let machim =[];
-    for(let ar of arr) {
-        if(machim[machim.length-1]==="." && machim[machim.length-1]===ar)
-            machim.pop();
-        machim.push(ar);
-        
+    //1번
+    new_id = new_id.toLowerCase();
+    //2번
+    for(let id of new_id) {
+        if('a'<=id && 'z'>=id) {
+            answer+=id;
+        }
+        if(0<=id && 9>=id) {
+            answer+=id;
+        }
+        if(id==='-' || id ==="_" | id ===".") {
+            answer+=id;
+        }
     }
-    if(machim[0]===".")
-        machim.shift();
-    if(machim[machim.length-1]===".")
-        machim.pop();
-    if(machim.length ===0)
-        machim.push("a");
-    if(machim.length>=16)
-        machim = machim.slice(0,15);
-    if(machim[machim.length-1]===".")
-        machim.pop();
-    if(machim.length <=2)
-        while(machim.length <3)
-            machim.push(machim[machim.length-1]);
-    return machim.join('');
+    //3번
+    let result =[];
+    for(let i =0;i<answer.length;i++) {
+        result.push(answer[i]);
+         if(result[result.length-2] ==="." && result[result.length-1] ===".") {
+            result.pop();
+        }
+    }
+    // 4번
+    answer = result;
+    if(answer[0] ==='.') {
+        answer.shift();
+    }
+    if(answer[answer.length-1]==='.') {
+        answer.pop();
+    }
+    //5번
+    if(answer.length ===0) {
+        answer.push("a");
+    }
+    // 6번
+    if(answer.length >=16) {
+        answer =answer.slice(0,15)
+        if(answer[answer.length-1]===".") {
+            answer.pop();
+        }
+    }
+    //7번
+    if(answer.length <=2) {
+        while(answer.length <3) {
+            answer.push(answer[answer.length-1]);
+        }
+    }
+    return answer.join('');
 }
