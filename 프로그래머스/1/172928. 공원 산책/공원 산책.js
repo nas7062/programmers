@@ -1,32 +1,33 @@
 function solution(park, routes) {
     var answer = [];
-    let N = park.length;
-    let M = park[0].length;
-    let char=[0,0];
-    for(let i =0;i<N;i++) {
-        for(let j =0;j<M;j++) {
-            if(park[i][j]==="S")
-                char = [i,j];
+    
+    for(let i =0;i<park.length;i++) {
+        for(let j=0;j<park[i].length;j++) {
+            if(park[i][j] ==="S")
+                answer  =[i,j]
         }
     }
-    const direction = {
-        E:[0,1],
-        W:[0,-1],
-        S:[1,0],
-        N:[-1,0]
-    }
+  const directions = {
+    E: [0, 1],
+    W: [0, -1],
+    S: [1, 0],
+    N: [-1, 0],
+  };
     for(let route of routes) {
-        let [dir,n]= route.split(' ');
-        let num = Number(n);
-        let [nx,ny] = char;
-        let step=0;
-        while(step <num) {
-            nx += direction[dir][0];
-            ny += direction[dir][1];
-      if (nx < 0 || N <= nx || ny < 0 || M <= ny || park[nx][ny] === "X") break;
+        let [dir,distanceStr] = route.split(' ');
+        let distance = parseInt(distanceStr);
+        let [nx,ny] = answer;
+        let step = 0;
+        while(step < distance) {
+            nx +=directions[dir][0];
+            ny +=directions[dir][1];
+            
+            if(nx >= park.length || nx <0 || ny >=park[0].length || ny < 0 || park[nx][ny] === "X")
+                break;
             step++;
         }
-        if (step === num) char = [nx, ny];
+        if (step === distance) answer = [nx, ny];
     }
-    return char;
+    
+    return answer;
 }
