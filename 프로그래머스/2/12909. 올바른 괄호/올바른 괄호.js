@@ -1,14 +1,24 @@
 function solution(s){
     var answer = true;
-    let result =[];
-    for(let a of s) {
-        if(result.length ===0 && a ===")")
-            return false;
-        if(a==="(")
-            result.push(a);
-        if(a===")")
-            result.pop();
+    let arr =[];
+    for(let ch of s) {
+        if(arr.length ===0) {
+            if(ch ===")")
+                return false;
+          
+        }
+        if(arr[arr.length-2] ==="(" && arr[arr.length-1] === ")") {
+            arr.pop();
+            arr.pop();
+        }
+        arr.push(ch);
+        
     }
-
-    return result.length ===0 ? true :false;
+    if(arr[arr.length-2] ==="(" && arr[arr.length-1] === ")") {
+            arr.pop();
+            arr.pop();
+        }
+    if(arr.length !==0)
+        return false;
+    return answer;
 }
