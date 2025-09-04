@@ -1,44 +1,42 @@
 function solution(bandage, health, attacks) {
     var answer = 0;
-    let len = attacks.length;
-    let map = new Map();
-     for(let attack of attacks) {
-            let time = attack[0];
-            let damage= attack[1];
-         map.set(time,damage);
-     }
-    let curTime =0;
-    let noAttackTime=0;
-    let t = bandage[0];
-    let x = bandage[1];
-    let y = bandage[2];
-    let maxhealth =health;
-    while(1) {
-        if(maxhealth<=health)
-            health= maxhealth;
+    const maxhealth = health;
+    let currenthealth= health;
+    let time= 0;
+    let straight =0;
+   
+    let lastTime = attacks[attacks.length-1][0];
+    while(time <lastTime) {
+        let [banTime,heal,lastHeal] = bandage;
+         let attacking = false;
+      
+          if(currenthealth > maxhealth)
+            currenthealth = maxhealth;
         
-        curTime++;
-        health+=x;
-        noAttackTime++;
-        let damage =map.get(curTime);
-        if(damage) {
-             health-=damage;
-            map.delete(curTime);
-            health-=x;
-            noAttackTime=0;
+        if(straight === banTime) {
+            currenthealth+=lastHeal;
+        if (currenthealth > maxhealth) currenthealth = maxhealth; 
+            straight =0;
         }
-        console.log(health,noAttackTime,curTime);
-        
-        if(health <1)
-            return -1;
-        
-        if(map.size ===0)   
-            break;
-        
-        if(noAttackTime ===t) {
-            health+=y;
-            noAttackTime=0;
+           
+        time++;
+        straight++;
+        for(let attack of attacks) {
+            let [attackTime,damage] = attack;
+            if(time ===attackTime) {
+                currenthealth-=damage;
+                attacking=true;
+                straight=0;
+                
+                if(currenthealth <=0) {
+                     return -1;
+                    break;
+                }
+            }
+          
         }
-    } 
-    return health;
+        if(!attacking )
+            currenthealth+=heal;
+    }
+    return currenthealth;
 }
