@@ -1,8 +1,7 @@
 function solution(s) {
     var answer = '';
-    s =s.split(" ");
-    answer+=Math.min(...s);
-    answer+=" ";
-    answer+=Math.max(...s);
+    s =s.split(' ').sort((a,b)=>a-b);
+    answer += s[0] + " ";
+    answer+= s[s.length-1]
     return answer;
 }
