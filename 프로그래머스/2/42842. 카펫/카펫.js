@@ -1,11 +1,19 @@
 function solution(brown, yellow) {
     var answer = [];
-    let x =0;
-    let y =0;
-    for(y=3;y<=(brown+yellow)/y;y++) {
-        x= Math.floor((brown+yellow)/y);
-        if((x-2)*(y-2)===yellow)
-            break;
+    let sum = brown+yellow;
+    for(let h =3;h<=brown;h++) {
+       if(sum % h === 0){
+            let w = sum / h;
+           // 제일 바깥부분 제거하면 yellow 개수 
+            if( (h-2) * (w-2) === yellow){
+                return [w, h];
+            }
+        }
     }
-    return [x,y];
+    return answer;
 }
+
+// 8 1 
+// 10 2
+// 13 3
+// 14 4
