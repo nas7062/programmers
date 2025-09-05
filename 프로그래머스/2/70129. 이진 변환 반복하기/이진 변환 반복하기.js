@@ -1,13 +1,14 @@
 function solution(s) {
-    var answer = 0;
-    let cnt= 0;
-    while(s!=="1") {
-        let result= [...s].filter((item)=>item ==='1');
-        let len = result.length;
-        let count = s.length-len;
-        s =len.toString(2);
-        cnt+=count;
-        answer++;
+  
+    let cnt =0;
+    let zerocnt =0;
+    while(s !== '1') {
+        let arr = s.split('').filter((item)=>item ==='1');
+        zerocnt += s.length- arr.length;
+        let next = arr.length.toString(2);
+        s = next;
+        cnt++;
     }
-    return [answer,cnt];
+        
+    return [cnt,zerocnt];
 }
