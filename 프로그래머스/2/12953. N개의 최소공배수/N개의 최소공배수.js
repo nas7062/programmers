@@ -1,18 +1,28 @@
 function gcd(a,b) {
-    let num =1;
-    for(let i =Math.min(a,b);i>=2;i--) {
-        if(a%i===0 && b%i===0)
-            return i;
+    if(a <b) {
+        for(let i =b;i>=1;i--) {
+            if(b%i===0 && a%i===0)
+                return i;
+        }
     }
-    return num;
+    else {
+         for(let i =a;i>=1;i--) {
+            if(b%i===0 && a%i===0)
+                return i;
+        }
+    }
 }
-function lcd(a,b) {
-    return a*b /gcd(a,b) ; 
+function lcm(a,b) {
+    return Math.floor(a * b / gcd(a,b));
 }
 function solution(arr) {
     var answer = 1;
-    for(let i =0;i<arr.length;i++) {
-        answer=lcd(answer,arr[i]);
+    let minlcm = 0;
+    for(let i=0;i<arr.length-1;i++) {
+       let l = lcm(arr[i],arr[i+1]);
+        arr[i+1] =l;
+        minlcm = Math.max(minlcm,l);
     }
-    return answer;
+   
+    return minlcm ;
 }
