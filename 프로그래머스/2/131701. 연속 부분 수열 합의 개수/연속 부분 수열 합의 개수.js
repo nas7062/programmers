@@ -1,14 +1,15 @@
 function solution(elements) {
     var answer = 0;
-    let set =new Set();
-    let arr =[...elements,...elements];
-    let n =elements.length;
-    for(let i =1; i<=n;i++) {
-        for(let j=0;j<arr.length;j++) {
-            let sum =arr.slice(j,j+i).reduce((a,b)=>a+b,0);
-            set.add(sum);
+    let result =[];
+    let arr = [...elements,...elements];
+    let k =1;
+    while(k <= elements.length) {
+        for(let i =0;i<arr.length;i++) {
+            let p =arr.slice(i,i+k).reduce((a,b)=>a+ +b,0);
+            result.push(p)
         }
+        k++;
     }
-    
-    return set.size;
+   
+    return result.sort((a,b)=>a-b).filter((item,idx)=>item !== result[idx+1]).length;
 }
