@@ -1,22 +1,35 @@
 function solution(want, number, discount) {
     var answer = 0;
-    for(let i=0;i<=discount.length-10;i++) {
-        let map = new Map();
-     want.forEach((item)=> {
-        map.set(item,0);
-    });
-        
-        let sliceArr= discount.slice(i,i+10);
-        for(let arr of sliceArr) {
-            if(map.has(arr))
-                map.set(arr,map.get(arr)+1);
+ 
+    let mapA = new Map();
+
+    want.forEach((item,idx)=> {
+        mapA.set(item,number[idx])
+    })
+    
+    for(let i =0;i<10;i++) {
+        let item = discount[i];
+        if(mapA.has(item)) {
+            mapA.set(item,mapA.get(item)-1);
         }
-        let result =[];
-        for(let v of map.values())
-            result.push(v);
-        let all =result.every((item,idx)=>item===number[idx]);
-        if(all)
+    }
+    
+    const isValid = () => [...mapA.values()].every((item)=> item <=0);
+    if(isValid()) {
+        answer++;
+    }
+    for(let i =10;i<discount.length;i++) {
+        let prev =discount[i-10];
+        let next = discount[i];
+        if(mapA.has(prev)) {
+            mapA.set(prev,mapA.get(prev) +1);
+        }
+         if(mapA.has(next)) {
+            mapA.set(next,mapA.get(next) -1);
+        }
+        if(isValid()) {
             answer++;
+        }
     }
     
     return answer;
