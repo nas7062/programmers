@@ -1,19 +1,26 @@
+// 시뮬레이션 고친 버전
 function solution(progresses, speeds) {
-    var answer = [];
-    while(progresses.length >0) {
-        let cnt=0;
-        for(let i =0;i<progresses.length;i++) {
-            if(progresses[i]<100) {
-                progresses[i]+=speeds[i];
-            }
-        }
-      while (progresses[0] >= 100) { // 맨앞의 progress배열이 100이 넘으면 shift
+  const answer = [];
+
+  while (progresses.length) {
+    // 1) 하루 동안 모든 작업 진행
+    for (let i = 0; i < progresses.length; i++) {
+      progresses[i] += speeds[i];
+    }
+
+    // 2) 하루 끝나고, 앞에서부터 연속 완료된 작업들 제거/집계
+    let shipped = 0;
+    while (progresses.length && progresses[0] >= 100) {
       progresses.shift();
-      speeds.shift(); 
-      cnt++;
+      speeds.shift();          // ✅ 같이 제거
+      shipped++;
     }
-    if (cnt > 0) 
-      answer.push(cnt);
+
+    // 3) 오늘 배포가 있었다면 기록
+    if (shipped > 0) {
+      answer.push(shipped);
     }
-    return answer;
+  }
+
+  return answer;
 }
