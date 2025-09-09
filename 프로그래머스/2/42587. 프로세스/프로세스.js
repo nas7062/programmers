@@ -1,20 +1,18 @@
 function solution(priorities, location) {
-  let answer = 0;
-  // process와 index값 저장
-  const array = priorities.map((process,index) => {
-    return {process, index};
-  })
+  // 프로세스 중요도를 index 값과 함께 배열에 저장
+  let queue = priorities.map((priority, index) => ({ priority, index }));
+  let count = 0;
 
-  while(array.length){
-    const queue = array.shift();
-    // some 메서드를 사용해서 queue.process 값보다 큰게 있는지 없는지 확인 있으면 push
-    if(array.some((element) => element.process > queue.process)){
-      array.push(queue);
-    }else{
-      // 없으면 answer++ index값이 location이랑 같아지면 break
-      answer++
-      if(queue.index === location) break;
+  while (queue.length > 0) {
+    const currentProcess = queue.shift();
+    const highestPriority = Math.max(
+      ...queue.map((process) => process.priority)
+    );
+
+    if (currentProcess.priority < highestPriority) queue.push(currentProcess);
+    else {
+      count++;
+      if (currentProcess.index === location) return count;
     }
   }
-  return answer;
 }
