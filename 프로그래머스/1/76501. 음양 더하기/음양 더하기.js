@@ -1,5 +1,10 @@
 function solution(absolutes, signs) {
     var answer = 0;
-    signs.forEach((item,idx)=>item ? answer+=absolutes[idx] : answer-=absolutes[idx]);
+    signs.forEach((sign,i)=> {
+        if(sign ===true)
+            answer+=absolutes[i];
+        else
+            answer-=absolutes[i];
+    })
     return answer;
 }
