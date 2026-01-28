@@ -1,9 +1,15 @@
 function solution(t, p) {
     var answer = 0;
-    for(let i =0;i<t.length -p.length+1;i++) {
-        let str= t.slice(i,i+p.length);
-        if(str <=p)
-            answer++;
+    const tlen = t.length;
+    const plen = p.length;
+    for(let i=0;i<=tlen-plen;i++) {
+        let arr ='';
+        for(let j =i;j<i+p.length;j++) {
+            arr+=t[j];
+        }
+        
+        if(+arr <= +p) answer++;
+        
     }
     return answer;
 }
