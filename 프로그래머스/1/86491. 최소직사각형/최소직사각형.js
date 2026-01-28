@@ -1,12 +1,14 @@
 function solution(sizes) {
-    var answer = 0;
-    let max1= 0;
-    let max2= 0;
-    sizes.forEach((size)=>  {
-        size = size.sort((a,b)=>a-b);
-        console.log(size)
-        max1 = Math.max(max1,size[0]);
-        max2= Math.max(max2,size[1]);
-    });
-    return max1 * max2;
+     let first = 0;
+    let second = 0;
+    sizes.forEach((size)=> {
+        size.sort((a,b)=> a-b);
+       
+       first = Math.max(first,size[0]);
+        
+       second = Math.max(second,size[1]);
+        console.log( first,second);
+    })
+    return first* second;
+    
 }
