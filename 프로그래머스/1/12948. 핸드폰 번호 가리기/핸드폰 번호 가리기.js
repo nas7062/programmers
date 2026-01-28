@@ -1,13 +1,6 @@
 function solution(phone_number) {
     var answer = '';
-    let len =phone_number.length;
-    let starlen = phone_number.length -4;
-    for(let i =0;i<len;i++) {
-        if(i<starlen) {
-            answer+='*';
-        }
-        else
-            answer+=phone_number[i];
-    }
-    return answer;
+    let first = phone_number.slice(0,-4).split('').map((num)=>num.replace(num,'*')).join('');
+    let second = phone_number.slice(-4);
+    return first+second;
 }
