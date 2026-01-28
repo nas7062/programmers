@@ -1,10 +1,9 @@
 function solution(price, money, count) {
-    var answer = -1;
-    let total =0;
-    for(let i =1;i<=count;i++) {
-        total+=price*i;
+    var answer = 0;
+    let cnt= 1;
+    while(cnt!==count +1) {
+        answer+=price *cnt;
+        cnt++;
     }
-    if(money - total > 0) 
-        return 0;
-    return total-money
+    return answer - money > 0 ? answer-money : 0;
 }
