@@ -1,3 +1,4 @@
 function solution(s) {
-    return [...s].sort().reverse().join("");
+    var answer = '';
+    return [...s].sort().reverse().join('');
 }
