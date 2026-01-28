@@ -1,9 +1,6 @@
 function solution(arr, divisor) {
     var answer = [];
-    for(let ar of arr) {
-        if(ar % divisor ===0) {
-            answer.push(ar);
-        }
-    }
-    return answer.length >0 ? answer.sort((a,b)=>a-b) : [-1];
+    let result=  arr.filter((ar)=> ar%divisor ===0 ).sort((a,b)=>a-b);
+    
+    return result.length ? result : [-1];
 }
