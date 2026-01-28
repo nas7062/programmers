@@ -1,3 +1,3 @@
 function solution(a, b) {
-    return a.map((item,idx)=>item*b[idx]).reduce((a,b)=>a+ +b,0);
+    return a.map((num,i)=> num * b[i]).reduce((a,b)=> a+ +b,0);
 }
