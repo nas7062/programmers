@@ -1,12 +1,12 @@
 function solution(food) {
-    var answer = '';
-    var reverse = '';
-    for(let i =1;i<food.length;i++) {
-        let num = food[i]/2;
-        answer+= i.toString().repeat(num);
-        reverse+= i.toString().repeat(num);
+    var answer = [];
+    let reverse = [];
+    for(let i =1;i<=food.length;i++) {
+        let num = food[i] /2;
+        let str=  String(i).repeat(num);
+        answer.push(str);
+      
     }
-    answer+='0';
-    answer+=reverse.split("").reverse().join('');
-    return answer;
+    reverse = answer.slice().reverse().join('');
+    return answer.join('') +'0' +reverse;
 }
